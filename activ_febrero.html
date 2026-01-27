@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admisiones FAH 2026 - Febrero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --ucsg-blue: #003366;
+            --ucsg-wine: #AE1049;
+            --ucsg-light: #f8fafc;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--ucsg-light);
+        }
+        .header-white {
+            background-color: #ffffff;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(174, 16, 73, 0.1);
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active {
+            background-color: var(--ucsg-wine);
+            color: white;
+            border-color: var(--ucsg-wine);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .card-hover { 
+                box-shadow: none !important; 
+                transform: none !important; 
+                border: 1px solid #e2e8f0 !important; 
+                page-break-inside: avoid;
+                margin-bottom: 2rem;
+            }
+            body { background: white; padding-bottom: 0; }
+            main { padding: 0; width: 100%; }
+            .grid { display: block !important; }
+            .grid > div { width: 100%; margin-bottom: 30px; }
+            header { padding-top: 0; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body class="pb-20">
+
+    <!-- Header Section -->
+    <header class="header-white py-12 mb-10 text-center relative">
+        <div class="container mx-auto px-4">
+            
+            <!-- Universidad Título -->
+            <p class="text-base md:text-xl font-bold tracking-[0.2em] mb-4 uppercase" style="color: #AE1049;">Universidad Católica de Santiago de Guayaquil</p>
+            
+            <!-- Logo -->
+            <img src="https://www.ucsg.edu.ec/wp-content/uploads/2024/03/logo-art.jpg" alt="Logo FAH" class="h-24 mx-auto mb-6 object-contain">
+            
+            <!-- Facultad Título -->
+            <h1 class="text-2xl md:text-3xl font-extrabold mb-2" style="color: #AE1049;">Facultad de Artes y Humanidades</h1>
+            
+            <!-- Subtítulo -->
+            <p class="text-xl md:text-2xl font-semibold text-black mb-2">Actividades de admisión febrero 2026</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4">
+        
+        <!-- Filters (No-print) -->
+        <div class="no-print flex flex-wrap justify-center gap-2 mb-10" id="filters">
+            <button onclick="filterBy('all')" class="filter-btn active px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">Todos</button>
+            <button onclick="filterBy('Animación')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">Animación</button>
+            <button onclick="filterBy('Musicales')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">Música</button>
+            <button onclick="filterBy('Cine')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">Cine</button>
+            <button onclick="filterBy('PINE')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">PINE (Inglés)</button>
+            <button onclick="filterBy('Videojuegos')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">Videojuegos</button>
+            <button onclick="filterBy('Multimedia')" class="filter-btn px-5 py-2 rounded-full border border-gray-300 font-bold text-sm transition-all">Multimedia / UX</button>
+        </div>
+
+        <!-- Activity Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="activity-grid">
+            <!-- JavaScript injects content here -->
+        </div>
+
+    </main>
+
+    <script>
+        const activities = [
+            {
+                carrera: "Multimedia y UX",
+                titulo: "Masterclass online: Dominando el desarrollo Fullstack. Claves para el éxito",
+                desc: "Claves tecnológicas para el éxito en la industria digital y el desarrollo de aplicaciones.",
+                fecha: "Jueves 5 de Febrero",
+                hora: "19:00",
+                lugar: "Canal Virtual FAH",
+                img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800",
+                color: "#f59e0b"
+            },
+            {
+                carrera: "Multimedia y UX",
+                titulo: "Workshop: Desarrolla tu App",
+                desc: "Taller práctico presencial de diseño y desarrollo de interfaces móviles.",
+                fecha: "Viernes 6 de Febrero",
+                hora: "08:30 - 11:00",
+                lugar: "Presencial (UE Nueva Semilla)",
+                img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800",
+                color: "#f59e0b"
+            },
+            {
+                carrera: "Animación Digital",
+                titulo: "Cápsulas Animadas Formativas",
+                desc: "Proyección Fase Final EDUCARTE 2. Demostración de talento y técnicas de animación.",
+                fecha: "6, 12 y 13 de Febrero",
+                hora: "13:00 a 17:00",
+                lugar: "Plaza Catar / Redes Sociales",
+                img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
+                color: "#AE1049"
+            },
+            {
+                carrera: "Cine",
+                titulo: "Taller: Fotografía de Productos",
+                desc: "Cinema Workshop especializado en iluminación y composición para productos comerciales.",
+                fecha: "Miércoles 11 de Febrero",
+                hora: "16:00 a 17:00",
+                lugar: "Edificio principal - 4to piso. Estudio de producción",
+                img: "fotografia.jpeg",
+                color: "#000"
+            },
+            {
+                carrera: "Arte y Videojuegos",
+                titulo: "Webinar: Videojuegos como soporte a la investigación Científica",
+                desc: "Los videojuegos como soporte fundamental a la investigación académica moderna.",
+                fecha: "Viernes 13 de Febrero",
+                hora: "17:00",
+                lugar: "Plataforma Virtual",
+                img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
+                color: "#10b981"
+            },
+            {
+                carrera: "Cine",
+                titulo: "Charla Online: Validación de Trayectoria",
+                desc: "Información detallada sobre el proceso de validación para profesionales con experiencia.",
+                fecha: "Miércoles 18 de Febrero",
+                hora: "18:00",
+                lugar: "Sesión Virtual",
+                img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=800",
+                color: "#000"
+            },
+            {
+                carrera: "Multimedia y UX",
+                titulo: "Masterclass con ASUS",
+                desc: "Exploración de hardware de alto rendimiento aplicado a la creación multimedia.",
+                fecha: "Jueves 19 de Febrero",
+                hora: "19:00",
+                lugar: "Virtual",
+                img: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800",
+                color: "#f59e0b"
+            },
+            {
+                carrera: "Artes Musicales",
+                titulo: "Masterclass: El Piano y la Voz",
+                desc: "Estudio de la incidencia del piano y la voz dentro de un ensamble musical.",
+                fecha: "Martes 23 de Febrero",
+                hora: "10:00",
+                lugar: "Aula 23",
+                img: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&q=80&w=800",
+                color: "#003366"
+            },
+            {
+                carrera: "Cine",
+                titulo: "Taller: Maquillaje VFX de Monstruo",
+                desc: "Demostración práctica de efectos visuales y maquillaje de caracterización avanzada.",
+                fecha: "Lunes 23 de Febrero",
+                hora: "16:00",
+                lugar: "Edificio principal - 4to piso. Estudio de producción",
+                img: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=800",
+                color: "#000"
+            },
+            {
+                carrera: "Multimedia y UX",
+                titulo: "Taller: Introducción al diseño de app aplicando UX. Software Figma",
+                desc: "Introducción al diseño de interfaces móviles aplicando metodologías UX y prototipado en Figma.",
+                fecha: "Miércoles 25 de Febrero",
+                hora: "19:00",
+                lugar: "Virtual",
+                img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=800",
+                color: "#f59e0b"
+            },
+            {
+                carrera: "PINE (Inglés)",
+                titulo: "Webinar: Gamificación en el aprendizaje de idiomas",
+                desc: "Estrategias de aprendizaje lúdico para la enseñanza de idiomas extranjeros.",
+                fecha: "Viernes 27 de Febrero",
+                hora: "10:00 AM",
+                lugar: "Virtual",
+                img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=800",
+                color: "#8b5cf6"
+            }
+        ];
+
+        function shareWhatsApp(titulo, fecha, carrera) {
+            const mensaje = `¡Hola! Te comparto esta actividad de la Facultad de Artes y Humanidades de la UCSG:\n\n📌 *${titulo}*\n🎓 Carrera: ${carrera}\n📅 Fecha: ${fecha}\n\n¡Espero te sea útil!`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        function renderActivities(filter = 'all') {
+            const grid = document.getElementById('activity-grid');
+            grid.innerHTML = '';
+            
+            const filtered = filter === 'all' 
+                ? activities 
+                : activities.filter(a => a.carrera.toLowerCase().includes(filter.toLowerCase()));
+
+            filtered.forEach(act => {
+                const card = `
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 card-hover flex flex-col overflow-hidden h-full">
+                        <div class="h-48 relative overflow-hidden">
+                            <img src="${act.img}" alt="${act.titulo}" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3">
+                                <span class="bg-white/95 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm" style="color: ${act.color}">
+                                    ${act.carrera}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-extrabold text-slate-800 mb-2 leading-tight">${act.titulo}</h3>
+                            <p class="text-slate-500 text-xs mb-4 line-clamp-3">${act.desc}</p>
+                            
+                            <div class="space-y-2 mb-6">
+                                <div class="flex items-center text-xs font-semibold text-slate-600">
+                                    <i class="far fa-calendar-alt w-5 text-[#AE1049]"></i>
+                                    <span>${act.fecha}</span>
+                                </div>
+                                <div class="flex items-center text-xs text-slate-500">
+                                    <i class="far fa-clock w-5"></i>
+                                    <span>${act.hora}</span>
+                                </div>
+                                <div class="flex items-center text-xs text-slate-500">
+                                    <i class="fas fa-map-marker-alt w-5 text-slate-400"></i>
+                                    <span>${act.lugar}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 mt-auto">
+                            <button onclick="shareWhatsApp('${act.titulo}', '${act.fecha}', '${act.carrera}')" 
+                                class="no-print w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md hover:bg-[#128C7E] transition-all">
+                                <i class="fab fa-whatsapp text-lg"></i> COMPARTIR EN WHATSAPP
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+
+            if (filter === 'all') {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.innerText === 'Todos') btn.classList.add('active');
+                });
+            }
+        }
+
+        function filterBy(career) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(career.toLowerCase()) || (career === 'all' && btn.innerText === 'Todos')) {
+                    btn.classList.add('active');
+                }
+            });
+            renderActivities(career);
+        }
+
+        window.onload = () => renderActivities('all');
+    </script>
+</body>
+</html>
